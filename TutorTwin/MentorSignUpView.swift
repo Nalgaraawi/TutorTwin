@@ -3,9 +3,11 @@ import SwiftUI
 struct MentorSignUpView: View {
     let interests = ["Sports", "Crafts", "Writing", "Shows/Movies", "Music", "Reading", "Baking", "Gaming"]
     let days = ["M", "T", "W", "Th", "F"]
+    let timeSlots = ["3:00 PM – 4:00 PM", "4:00 PM – 6:00 PM", "6:00 PM – 8:00 PM"]
 
     @State private var selectedInterest = "Sports"
     @State private var selectedDay = "M"
+    @State private var selectedTimeSlot = ""
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -35,14 +37,33 @@ struct MentorSignUpView: View {
                     .frame(maxWidth: .infinity)
                     .animation(.easeInOut, value: selectedDay)
 
-                    VStack(spacing: 14) {
-                        Text("3:00 PM - 4:00 PM")
-                        Text("4:00 PM - 6:00 PM")
+                    VStack(spacing: 12) {
+                        ForEach(timeSlots, id: \.self) { slot in
+                            Button {
+                                selectedTimeSlot = slot
+                            } label: {
+                                HStack {
+                                    Image(systemName: "clock")
+                                        .foregroundStyle(selectedTimeSlot == slot ? .white : AppTheme.primaryBlue)
+                                    Text(slot)
+                                        .font(.system(size: 17))
+                                        .foregroundStyle(selectedTimeSlot == slot ? .white : .black)
+                                    Spacer()
+                                    if selectedTimeSlot == slot {
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 14, weight: .semibold))
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
+                                .background(selectedTimeSlot == slot ? AppTheme.primaryBlue : Color.white)
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                            }
+                            .buttonStyle(.plain)
+                        }
                     }
-                    .font(.title3)
-                    .padding(.top, 5)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.black)
+                    .animation(.easeInOut, value: selectedTimeSlot)
 
                     Spacer(minLength: 110)
                 }

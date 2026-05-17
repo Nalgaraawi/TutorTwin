@@ -213,8 +213,8 @@ struct VolunteerVerificationView: View {
                     }
                     .buttonStyle(.plain)
 
-                    // Confirm — navigate to camera/scanner
-                    NavigationLink(destination: CameraScannerView()) {
+                    // Confirm — navigate to interests
+                    NavigationLink(destination: MentorSignUpView()) {
                         Image(systemName: "checkmark")
                             .font(.title)
                             .foregroundStyle(.black)
