@@ -14,7 +14,7 @@ struct RoleSelectionView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("I am a...")
-                .font(.largeTitle)
+                .font(AppTheme.gotu(34))
                 .padding(.top, 40)
                 .padding(.leading, 40)
 
@@ -45,7 +45,7 @@ struct ButtonStyleView: View {
 
     var body: some View {
         Text(title)
-            .font(.title)
+            .font(AppTheme.gotu(28))
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 28)

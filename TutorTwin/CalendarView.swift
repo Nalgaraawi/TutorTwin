@@ -64,8 +64,8 @@ struct CalendarView: View {
             }
 
             TabBar(selectedTab: AppTab.calendar)
-//                .padding(.horizontal, 18)
-//                .padding(.bottom, 8)
+                .padding(.horizontal, 18)
+                .padding(.bottom, 8)
         }
         .background(AppTheme.background.ignoresSafeArea())
     }

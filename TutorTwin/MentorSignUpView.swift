@@ -1,13 +1,3 @@
-//
-//  MentorSignUpView.swift
-//  TutorTwin
-//
-//  Created by Sukeina Ammar on 5/16/26.
-//
-
-
-// MentorSignUpView.swift
-
 import SwiftUI
 
 struct MentorSignUpView: View {
@@ -18,56 +8,56 @@ struct MentorSignUpView: View {
     @State private var selectedDay = "M"
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            Text("Interests")
-                .font(.largeTitle)
-                .padding(.top, 35)
+        ZStack(alignment: .bottom) {
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 24) {
+                    Text("Interests")
+                        .font(AppTheme.gotu(34))
+                        .padding(.top, 35)
 
-            FlowLayout(items: interests, selectedItem: $selectedInterest)
+                    FlowLayout(items: interests, selectedItem: $selectedInterest)
 
-            Text("Volunteer Availability")
-                .font(.title)
+                    Text("Volunteer Availability")
+                        .font(AppTheme.gotu(28))
+                        .minimumScaleFactor(0.75)
 
-            HStack(spacing: 24) {
-                ForEach(days, id: \.self) { day in
-                    Text(day)
-                        .font(.title3)
-                        .foregroundStyle(.gray)
-                        .frame(width: 44, height: 36)
-                        .background(Color.white)
-                        .clipShape(Capsule())
-                        .onTapGesture {
-                            selectedDay = day
+                    HStack(spacing: 20) {
+                        ForEach(days, id: \.self) { day in
+                            Text(day)
+                                .font(.title3)
+                                .foregroundStyle(selectedDay == day ? .white : .gray)
+                                .frame(width: 44, height: 36)
+                                .background(selectedDay == day ? AppTheme.primaryBlue : Color.white)
+                                .clipShape(Capsule())
+                                .onTapGesture { selectedDay = day }
                         }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .animation(.easeInOut, value: selectedDay)
+
+                    VStack(spacing: 14) {
+                        Text("3:00 PM - 4:00 PM")
+                        Text("4:00 PM - 6:00 PM")
+                    }
+                    .font(.title3)
+                    .padding(.top, 5)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.black)
+
+                    Spacer(minLength: 110)
                 }
+                .padding(.horizontal, 26)
             }
-            .frame(maxWidth: .infinity)
-
-            VStack(spacing: 14) {
-                Text("3:00 PM - 4:00 PM")
-                Text("4:00 PM - 6:00 PM")
-            }
-            .font(.title3)
-            .padding(.top, 5)
-            .frame(maxWidth: .infinity)
-            .foregroundStyle(.black)
-
-            Spacer()
 
             NavigationLink {
                 TutorMatchView()
             } label: {
-                Text("Create Profile")
-                    .font(.largeTitle)
-                    .foregroundStyle(.black)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(AppTheme.primaryBlue)
-                    .clipShape(Capsule())
+                PrimaryCapsuleButton(title: "Create Profile")
             }
+            .buttonStyle(.plain)
+            .padding(.horizontal, 26)
             .padding(.bottom, 45)
         }
-        .padding(.horizontal, 26)
         .background(AppTheme.background.ignoresSafeArea())
     }
 }

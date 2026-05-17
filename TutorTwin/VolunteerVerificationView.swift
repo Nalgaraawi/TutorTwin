@@ -1,58 +1,62 @@
-//
-//  VolunteerVerificationView.swift
-//  TutorTwin
-//
-//  Created by Sukeina Ammar on 5/16/26.
-//
-
-
-// VolunteerVerificationView.swift
-
 import SwiftUI
 
 struct VolunteerVerificationView: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            Text("Select Institution")
-                .font(.largeTitle)
-                .padding(.top, 25)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 24) {
+                Text("Select Institution")
+                    .font(AppTheme.gotu(34))
+                    .minimumScaleFactor(0.65)
+                    .lineLimit(1)
+                    .padding(.top, 25)
 
-            SearchBar()
+                SearchBar()
 
-            Text("Proof of attendance")
-                .font(.title)
+                Text("Proof of attendance")
+                    .font(AppTheme.gotu(28))
+                    .minimumScaleFactor(0.75)
 
-            Text("Upload documents to verify status (transcript, School ID, Letter of Acceptance)")
-                .foregroundStyle(.gray)
-                .font(.body)
+                Text("Upload documents to verify status (transcript, School ID, Letter of Acceptance)")
+                    .foregroundStyle(.gray)
+                    .font(.body)
 
-            Rectangle()
-                .fill(Color.gray.opacity(0.65))
-                .frame(width: 285, height: 355)
-                .frame(maxWidth: .infinity)
+                RoundedRectangle(cornerRadius: 18)
+                    .fill(Color.gray.opacity(0.12))
+                    .frame(height: 300)
+                    .overlay {
+                        VStack(spacing: 14) {
+                            Image(systemName: "arrow.up.doc.fill")
+                                .font(.system(size: 52))
+                                .foregroundStyle(Color.gray.opacity(0.45))
 
-            Spacer()
+                            Text("Tap to upload document")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.gray)
+                        }
+                    }
 
-            HStack(spacing: 25) {
-                CircleIconButton(systemName: "arrow.uturn.left")
+                HStack(spacing: 25) {
+                    CircleIconButton(systemName: "arrow.uturn.left")
 
-                CircleIconButton(systemName: "square.and.arrow.up")
+                    CircleIconButton(systemName: "square.and.arrow.up")
 
-                NavigationLink(destination: CameraScannerView()) {
-                    Image(systemName: "checkmark")
-                        .font(.title)
-                        .foregroundStyle(.black)
-                        .frame(width: 58, height: 58)
-                        .background(AppTheme.primaryBlue)
-                        .clipShape(Circle())
-                        .contentShape(Circle())
+                    NavigationLink(destination: CameraScannerView()) {
+                        Image(systemName: "checkmark")
+                            .font(.title)
+                            .foregroundStyle(.black)
+                            .frame(width: 58, height: 58)
+                            .background(AppTheme.primaryBlue)
+                            .clipShape(Circle())
+                            .contentShape(Circle())
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 20)
+                .padding(.bottom, 20)
             }
-            .frame(maxWidth: .infinity)
-            .padding(.bottom, 35)
+            .padding(.horizontal, 22)
         }
-        .padding(.horizontal, 22)
         .background(AppTheme.background.ignoresSafeArea())
     }
 }
