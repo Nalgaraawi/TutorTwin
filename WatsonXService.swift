@@ -3,7 +3,7 @@ import Foundation
 final class GeminiService {
     static let shared = GeminiService()
 
-    private let apiKey = "AIzaSyCY7dXx9KfqrmWnNXI26ETdD2pRPqFnA7E"
+    private let apiKey = Secrets.geminiAPIKey
     private let modelID = "gemini-1.5-flash"
 
     private init() {}

@@ -39,6 +39,7 @@ fastlane/test_output
 .AppleDouble
 .LSOverride
 
-# Secrets (never commit API keys)
+# Secrets — never commit API keys
+TutorTwin/Secrets.swift
 Secrets.swift
 *.env
